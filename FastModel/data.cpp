@@ -48,6 +48,7 @@ FMEngData* ReadDataFromFile(char* FileName)
    data->PG0 = readValue(&inf);
    data->GC0 = readValue(&inf);
    data->komp20 = readValue(&inf);
+   data->H0 = readValue(&inf);
 
    // чтение параметров
    data->minGC = readValue(&inf);

@@ -14,15 +14,15 @@ const float tout = 0.01;    // шаг вывода
 const float pi = 3.1415;
 const float Rvozd = 287.;  // газовая постоянная; Дж / моль К
 const float Rgaz = 286.;   // газовая постоянная отработавших газов
-const int   i = 12;        // количество цилиндров
-const float d_cyl= 0.265;  // диаметр поршня, м
-const float h_cyl = 0.31;  // ход поршня, м
+const int   i = 16;        // количество цилиндров
+const float d_cyl= 0.26;  // диаметр поршня, м
+const float h_cyl = 0.26;  // ход поршня, м
 const float V = 1.07*pi * h_cyl*d_cyl*d_cyl/4;     // ? объём цилиндра; м^3
 const float Hu = 42500000;  // низшая теплота сгорания; Дж/кг
-const float Idv = 217.;     // момент инерции
-const float Mpothh = 3240.; // момент потерь холостого хода
-const float WDhh = 600 * pi / 30;   // частота холостого хода
-const float Iturb = 0.046;  // момент инерции турбокомпрессора
+const float Idv = 1000.;     // момент инерции
+const float Mpothh = 3240.; // момент потерь холостого хода ?
+const float WDhh = 350 * pi / 30;   // частота холостого хода
+const float Iturb = 0.143;  // момент инерции турбокомпрессора
 const float Kvzd = 1.4;    // показатель адиабаты для воздуха
 const float Kgaz = 1.35;   // показатель адиабаты газов
 const float kkv = Kvzd/(Kvzd-1);    // для удобства
@@ -30,8 +30,8 @@ const float kkg = Kgaz/(Kgaz-1);    // для удобства
 const float T0 = 298.;     // температура воздуха
 const float p0 = 101325;   // атмосферное давление, Па
 const float pt0 = p0 * 1.02;// давление в выпускном коллекторе
-const float Vvp = 0.26;    // объём впускного коллектора
-const float Vvyp = 0.11;   // объём выпускного коллектора
+const float Vvp = 0.44;    // объём впускного коллектора
+const float Vvyp = 0.44;   // объём выпускного коллектора
 
 
 
@@ -61,9 +61,9 @@ double etai(FMEngState* s, FMEngData* d);
 double etamex(FMEngState* s, FMEngData* d);
 double etakad(FMEngState* s, FMEngData* d);
 double etat(FMEngState* s, FMEngData* d);
-double gc(FMEngState* s, FMEngData* d);    // цикловая подача; f(h, WD) - вообще говоря, будет поставляться регулятором.
-
-double h(FMEngState* s, FMEngData* d); // управляющее воздействие
+double gc(FMEngState* s, FMEngData* d);   // цикловая подача; f(h, WD) - вообще говоря, будет поставляться регулятором.
+//double h(FMEngState* s, FMEngData* d);		// положение рейки
+double z(FMEngState* s, FMEngData* d);		// управляющее воздействие
 double Mosh(FMEngState* s, FMEngData* d);
 
 double nd(FMEngState* s, FMEngData* d);

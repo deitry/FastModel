@@ -30,6 +30,7 @@ public:
    double Gdiz;
    int surge;  // 0 - всё как обычно / 1 - помпаж
    int komp2;  // 0 - один турбокомпрессор, 1 - два тк
+	double h;	// положение рейки 
 };
 
 FMEngState* ReadStateFromFile(char* FileName);

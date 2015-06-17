@@ -62,5 +62,7 @@ FMEngState* ReadStateFromData(FMEngData* data)
    state->GC = data->GC0;
    state->komp2 = data->komp20;
 
+	state->h = data->H0;
+
    return state; 
 }

@@ -36,8 +36,8 @@ int printStateToFile(FMEngState* s, FMEngData* d, char* FileName)
        << etamex(s,d)  << '\t'      // N
 
        << Gdiz(s,d) << '\t'         // O
-       << 2*Gk(s,d) << '\t'           // P
-       << 2*Gt(s,d) <<  '\t'          // Q
+       << Gk(s,d) << '\t'           // P
+       << Gt(s,d) <<  '\t'          // Q
 
        << Mi(s,d) - Mpot(s,d) << '\t'  // R
        << Mi(s,d) << '\t'           // S
@@ -50,10 +50,12 @@ int printStateToFile(FMEngState* s, FMEngData* d, char* FileName)
        << Lkad(s,d)  << '\t'        // Y
        << Ltad(s,d)  << '\t'        // Z
        << rho(s,d)  << '\t'        // AA
-       << (Rvozd*Tvozd(s,d)/Vvp) * (2*Gk(s,d)-Gdiz(s,d))<<  '\t'
-       << (Rgaz*Tgaz(s,d)/Vvyp) * (Gdiz(s,d)+Gtopl(s,d)-2*Gt(s,d))<<'\t'
-       << d->temp << '\t'
-       << s->surge
+		 << s->h		<< '\t'
+		 << z(s,d)		<< '\t'
+		 //<< (Rvozd*Tvozd(s,d)/Vvp) * (2*Gk(s,d)-Gdiz(s,d))<<  '\t'
+       //<< (Rgaz*Tgaz(s,d)/Vvyp) * (Gdiz(s,d)+Gtopl(s,d)-2*Gt(s,d))<<'\t'
+       //<< d->temp << '\t'
+       //<< s->surge
        << '\n';
 
    out.close();
@@ -74,38 +76,41 @@ int printHatToFile(char* FileName)
    }
 
    out << "время"    << '\t'         // A
-       << "nd" << '\t'           // B
-       << "gc*10^6" << '\t'              // C
-       << "alpha" << '\t'        // D
-       << "ntk"  << '\t'         // E
+       << "nd"			<< '\t'           // B
+       << "gc*10^6"	<< '\t'              // C
+       << "alpha"		<< '\t'        // D
+       << "ntk"		<< '\t'         // E
 
-       << "pk" << '\t'       // F
-       << "pg" << '\t'       // G
+       << "pk"			<< '\t'       // F
+       << "pg"			<< '\t'       // G
 
-       << "tgaz" << '\t'         // H
-       << "tk" << '\t'           // I
-       << "tvozd" << '\t'        // J
+       << "tgaz"		<< '\t'         // H
+       << "tk"			<< '\t'           // I
+       << "tvozd"		<< '\t'        // J
 
-       << "etai" << '\t'         // K
-       << "etakad" << '\t'       // L
-       << "etat"  << '\t'        // M
-       << "etamex"  << '\t'      // N
+       << "etai"		<< '\t'         // K
+       << "etakad"	<< '\t'       // L
+       << "etat"		<< '\t'        // M
+       << "etamex"	<< '\t'      // N
 
-       << "Gdiz" << '\t'         // O
-       << "Gk" << '\t'           // P
-       << "Gt" <<  '\t'          // Q
+       << "Gdiz"		<< '\t'         // O
+       << "Gk"			<< '\t'           // P
+       << "Gt"			<<  '\t'          // Q
 
-       << "Meff" << '\t'         // R
-       << "Mi" << '\t'           // S
-       << "Mpot" << '\t'         // T
-       << "Mnagr" << '\t'        // U
-       << "Mosh" <<  '\t'        // V
-       << "Mk" << '\t'           // W
-       << "Mt"  << '\t'          // X
+       << "Meff"		<< '\t'         // R
+       << "Mi"			<< '\t'           // S
+       << "Mpot"		<< '\t'         // T
+       << "Mnagr"		<< '\t'        // U
+       << "Mosh"		<<  '\t'        // V
+       << "Mk"			<< '\t'           // W
+       << "Mt"			<< '\t'          // X
 
-       << "Lkad"  << '\t'        // Y
-       << "Ltad"  << '\t'        // Z
-       << "rho"  << '\n';        // AA
+       << "Lkad"		<< '\t'        // Y
+       << "Ltad"		<< '\t'        // Z
+       << "rho"		<< '\t'        // AA
+		 << "h, мм"		<< '\t'
+		 << "z, уставка"		<< '\t'
+		 << '\n';
 
    out.close();
    return 0;

@@ -71,11 +71,15 @@ void FMEngine::nextStep()
    this->data->temp = (tau/6) * (B[0]*kPK[0] + B[1]*kPK[1] + B[2]*kPK[2] + B[3]*kPK[3]);
    this->state->PG += (tau/6) * (B[0]*kPG[0] + B[1]*kPG[1] + B[2]*kPG[2] + B[3]*kPG[3]);
    this->state->GC = gc(this->state,this->data);  // пересчёт регулирующего воздействия - цикловой подачи
+
    if ( 0 && (this->data->Pklap) && (this->state->surge))
    {
       this->state->PK -= this->data->Pklap;
       this->state->PG += this->data->Pklap;
    }
+
+	// расчёт текущего положения рейки
+	state->h += (1 * z(state,data) - state->h) * tau / 0.05; // 0.05 - постоянная времени сервопривода, 1 - к-т передачи
 }
 
 // ================================================================
